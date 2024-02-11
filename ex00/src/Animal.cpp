@@ -20,6 +20,7 @@ Animal& Animal::operator=(const Animal& other){
     if (this != &other){
         this->_type = other._type;
     }
+    std::cout << " [Operator Assignament Constructor] " << _type << " called" << std::endl;
     return *this;
 }
 

@@ -1,6 +1,6 @@
 NAME = animals
 
-SRC_FILES = src/main.cpp src/Animal.cpp src/Dog.cpp src/Cat.cpp
+SRC_FILES = src/main.cpp src/Animal.cpp src/Dog.cpp src/Cat.cpp src/WrongAnimal.cpp src/WrongCat.cpp
 
 OBJ_DIR = objs/
 OBJ_FILES = $(notdir $(SRC_FILES:.cpp=.o))
@@ -10,7 +10,7 @@ DEP_FILES = $(SRC_FILES:.cpp=.d)
 DEPS = $(addprefix $(OBJ_DIR), $(DEP_FILES))
 
 CC = g++
-CFLAGS = -std=c++98 -Wall -Werror -Wextra -MMD
+CFLAGS = -std=c++98 -Wall  -Wextra -MMD
 RM = rm -f
 INCLUDE = -I includes
 
