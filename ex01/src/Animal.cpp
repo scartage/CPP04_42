@@ -8,7 +8,7 @@ Animal::Animal()
 
 Animal::~Animal()   
 {
-    std::cout << " [Destructor animal] " << _type << " called" << std::endl;
+    std::cout << " [Destructor animal] " << "class: Animal , subclass: " << _type << " that has been called" << std::endl;
 }
 
 Animal::Animal(const Animal& old){

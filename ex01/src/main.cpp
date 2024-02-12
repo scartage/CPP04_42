@@ -1,83 +1,59 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
-
+#include <iostream>
 
 int main(void){
-	const Animal* an = new Animal();
-    const Animal* dog = new Dog();
-    const Animal* cat = new Animal();
+	// Creamos un perro
+	Dog originalDog;
+	originalDog.addIdea("Buenos dias mundo");
+	std::cout << "origina dog primera idea: " << originalDog.getIdea(0) << std::endl;
 
-    std::cout << "This animal is type: " << dog->getType() << std::endl;
-    std::cout << "This animal is type: " << cat->getType() << std::endl;
 
-    cat->makeSound();
-    dog->makeSound();
+	// realizamos copia profunda
+	Dog copyDog = originalDog;
+	copyDog.addIdea("buenas tardes gente"); //aqui modificamos la copia
+	std::cout << "copy dog primera idea: " << copyDog.getIdea(0) << std::endl;
+	std::cout << "copy dog nueva idea: " << copyDog.getIdea(1) << std::endl;
 
-    an->makeSound();
-    
-    delete dog;
-    delete cat;
-    delete an;
-    return 0;
+	std::cout << std::endl;
+	
+	//verificamos que originalDog no cambio
+	std::cout << "original dog primera idea despues de la copia: " << std::endl;
+	std::cout << "primera idea del og: " << originalDog.getIdea(0) << std::endl;
+
+	//intentamos imprimir una segunda idea del og (debe fallar)
+	try
+	{
+		std::cout << "segunda idea del og: " << originalDog.getIdea(1) << std::endl;
+	}
+	catch(std::exception& e)
+	{
+		std::cerr << "OG no tiene seungas ideas, copia profunda confirmada!!! " << '\n';
+	}
+	return 0;
 }
 
-/*int main()
-{
-	std::cout << BGRED"[ SUBJECT TEST ]"RESET << std::endl;
-	Animal* meta = new Animal();
-	Animal* j = new Dog();
-	Animal* i = new Cat();
 
-	std::cout << BGRED"[ Type tests ]"RESET << std::endl;
-	std::cout << GREEN"Type: "RESET << meta->getType() << std::endl;
-	std::cout << GREEN"Type: "RESET << j->getType() << " " << std::endl;
-	std::cout << GREEN"Type: "RESET << i->getType() << " " << std::endl;
-	std::cout << BGRED"[ Sounds test ]"RESET << std::endl;
-	std::cout << GREEN"Sound: "RESET;
-	i->makeSound();
-	std::cout << GREEN"Sound: "RESET;
-	j->makeSound();
-	std::cout << GREEN"Sound: "RESET;
-	meta->makeSound();
+// Main basico para demostrar el uso correcto entre cons y dest entre subclass y clase base
+/*int main(void){
+	const int size = 100;
+	Animal* animals[size];
 
-	delete meta;
-	delete i;
-	delete j;
+	for (int i = 0; i < size / 2; i++){
+		animals[i] = new Dog();
+	}
 
-	std::cout << BGRED"[ MORE TESTS ]"RESET << std::endl;
-	const WrongAnimal* wrongMeta = new WrongAnimal();
-	const WrongAnimal* wrongI = new WrongCat();
-	Cat cat;
-	Dog dog;
-	Animal animal;
-	Animal *cat2 = new Cat();
-	Animal *an = new Animal();
+	for (int i = size / 2; i < size; i++){
+		animals[i] = new Cat();
+	}
 
-	std::cout << BGRED"[ Type tests ]"RESET << std::endl;
-	std::cout << GREEN"Type: "RESET << wrongMeta->getType() << " " << std::endl;
-	std::cout << GREEN"Type: "RESET << wrongI->getType() << " " << std::endl;
-	std::cout << GREEN"Type: "RESET << cat.getType() << " " << std::endl;
-	std::cout << GREEN"Type: "RESET << dog.getType() << " " << std::endl;
-	std::cout << GREEN"Type: "RESET << animal.getType() << " " << std::endl;
-	std::cout << GREEN"Type: "RESET << cat2->getType() << std::endl;
-	std::cout << GREEN"Type: "RESET << an->getType() << std::endl;
+	for (int i = 0; i < size; i++){
+		std::cout << animals[i]->getType() << " says: ";
+		animals[i]->makeSound();
+	}
 
-	std::cout << BGRED"[ Sounds tests ]"RESET << std::endl;
-	std::cout << GREEN"Sound: "RESET;
-	wrongI->WrongSound();
-	std::cout << GREEN"Sound: "RESET;
-	wrongMeta->WrongSound();
-	std::cout << GREEN"Sound: "RESET;
-	cat.makeSound();
-	std::cout << GREEN"Sound: "RESET;
-	dog.makeSound();
-	std::cout << GREEN"Sound: "RESET;
-	animal.makeSound();
-
-	delete wrongMeta;
-	delete wrongI;
-	delete cat2;
-	delete an;
-
-	return 0;
+	for (int i = 0; i < size; i++){
+		delete animals[i];
+	}
+    return 0;
 }*/

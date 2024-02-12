@@ -13,6 +13,9 @@ public:
     virtual ~Brain();
     Brain(const Brain& old);
     Brain& operator=(const Brain& other);
+
+    void addIdea(const std::string& idea);  //añade idea
+    std::string getIdea(size_t index) const; //obtiene idea por indice
 };
 
 #endif
